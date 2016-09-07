@@ -2,6 +2,8 @@
 <html><head><title>Cryptogram Solver</title>
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
+<h1>cryptojam</h1>
+<form action="solve.php" method="post">
 <?php
 
 $puzzles = json_decode(file_get_contents('grams.json'), true);
@@ -9,7 +11,10 @@ $puzzles = json_decode(file_get_contents('grams.json'), true);
 #echo json_last_error_msg() , "<br>";
 #var_dump($puzzles);
 
-$puzzle = $puzzles[ array_rand($puzzles) ];
+$pzl_id = array_rand($puzzles);
+echo "<input type=\"hidden\" name=\"id\" value=\"$pzl_id\">";
+  
+$puzzle = $puzzles[ $pzl_id ];
 
 #var_dump($puzzle);
 #echo $puzzle['author'];
@@ -37,5 +42,10 @@ if ( !empty($puzzle['author']) ) {
 
 echo $pzlcode;
 
+echo "<p><button>Check solution</button></p>";
+  
 ?>
+</form>
+<p><a href="./">Get a new puzzle</a></p>
+<p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a>.</p>
 </body></html>

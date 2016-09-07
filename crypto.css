@@ -1,12 +1,36 @@
-* {
+body {
+  font-family: monospace;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  position: relative;
+  top: -0.4em;
+  font-size: 300%;
+  width: 100%;
+  background-color: #ccc;
+  margin: 0;
+  padding-bottom: 0.2em;
+}
+
+form {
+  margin: 0 9%;
   letter-spacing: 1em;
+  line-height: 260%;
+  font-size: 160%;
 }
 
 input {
   width: 1em;
   text-align: center;
+  font-size: 120%;
 }
 
 :placeholder-shown {  
   font-style: italic;
+}
+
+p {
+  text-align: center;
 }
