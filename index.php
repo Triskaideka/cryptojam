@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="utf-8">
 <html><head><title>Cryptogram Solver</title>
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
@@ -21,9 +22,11 @@ $puzzle = $puzzles[ $pzl_id ];
 
 $pzlcode = '';
 
-foreach ( preg_split('//', $puzzle['text']) as $c ) {
+foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
   if ( preg_match('/[A-Za-z]/', $c) ) {
-    $pzlcode .= "<input placeholder=$c>";
+    $pzlcode .= "<input name=s[] placeholder=$c>";
+  } else if ( $c === ' ' ) {
+    $pzlcode .= " <wbr>";
   } else {
     $pzlcode .= $c;
   }
@@ -31,9 +34,11 @@ foreach ( preg_split('//', $puzzle['text']) as $c ) {
 
 if ( !empty($puzzle['author']) ) {
   $pzlcode .= '<br>&mdash;';
-  foreach ( preg_split('//', $puzzle['author']) as $c ) {
+  foreach ( preg_split('//', strtoupper($puzzle['author']) ) as $c ) {
     if ( preg_match('/[A-Za-z]/', $c) ) {
       $pzlcode .= "<input placeholder=$c>";
+    } else if ( $c === ' ' ) {
+      $pzlcode .= " <wbr>";
     } else {
       $pzlcode .= $c;
     }
