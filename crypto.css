@@ -6,8 +6,9 @@ body {
 h1 {
   text-align: center;
   position: relative;
-  top: -0.4em;
-  font-size: 300%;
+  top: -0.3em;
+  font-size: 400%;
+  letter-spacing: 0.5em;
   width: 100%;
   background-color: #666;
   color: #ddd;
@@ -19,14 +20,21 @@ form {
   margin: 0 9%;
   letter-spacing: 0.3em;
   line-height: 260%;
-  font-size: 160%;
-  white-space: nowrap;
+  font-size: 200%;
+}
+
+form span {
+  white-space: pre;
 }
 
 input {
   width: 1em;
   text-align: center;
-  font-size: 120%;
+  font-size: 90%;
+}
+
+.att {
+  text-align: right;
 }
 
 :placeholder-shown {  
