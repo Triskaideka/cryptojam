@@ -46,7 +46,9 @@ input {
 
 .proof {
   margin: 1em 20%;
-  font-family: fantasy;
+  font-family: serif;
+  font-size: 200%;
+  font-style: italic;
 }
 
 .att {

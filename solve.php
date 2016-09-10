@@ -60,5 +60,5 @@ if ($submission === $answer) {
 
 // End of document
 if ( empty($_REQUEST['a']) || !$_REQUEST['a']) {
-  echo "</body></html>";
+  echo "<p><a href=\"./\">Try another puzzle</a></p></body></html>";
 }
