@@ -1,6 +1,15 @@
 <!doctype html>
+<html><head>
+<?php /*
+index.php for Cryptojam
+Author: Triskaideka
+License: MIT
+
+Parameters:
+  p = Puzzle ID
+*/ ?>
 <meta charset="utf-8">
-<html><head><title>Cryptojam</title>
+<title>Cryptojam</title>
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
 <h1>CRYPTOJAM</h1>

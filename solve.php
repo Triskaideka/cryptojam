@@ -1,7 +1,19 @@
 <?php
+/*
+solve.php for Cryptojam
+Author: Triskaideka
+License: MIT
+
+Arguments:
+  p = Puzzle ID
+  s = Solution (array of letters)
+  a = Asynchronous? (indicates whether to display a full page or not)
+*/
+
 // Document head
 if ( empty($_REQUEST['a']) || !$_REQUEST['a']) {
-  echo "<!doctype html><html><head><title>Cryptojam solution</title></head><body>";
+  ?><!doctype html><html><head><meta charset="utf-8"><title>Cryptojam solution</title>
+  <link rel="stylesheet" href="crypto.css" type="text/css"></head><body><?php
 }
 
 // Load the puzzle db
@@ -24,11 +36,12 @@ if ( empty($_REQUEST['s']) || !is_array($_REQUEST['s']) ) {
 // Compare the solution to the db
 $submission = strtoupper( implode('', $_REQUEST['s']) );
 
+$puzzle = $puzzles[$_REQUEST['p']];
 $answer = strtoupper(
   preg_replace(
     "/[^A-Za-z]/",
     '',
-    $puzzles[$_REQUEST['p']]['text'] . $puzzles[$_REQUEST['p']]['author']
+    $puzzle['text'] . $puzzle['author']
   )
 );
 
@@ -38,6 +51,8 @@ $answer = strtoupper(
 
 if ($submission === $answer) {
   echo "<p>Correct!</p>";
+  echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
+
 } else {
   echo "<p>Sorry, that's the wrong answer.</p>";
 }

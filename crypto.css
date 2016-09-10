@@ -44,6 +44,11 @@ input {
   margin-right: 2px;
 }
 
+.proof {
+  margin: 1em 20%;
+  font-family: fantasy;
+}
+
 .att {
   text-align: right;
 }
