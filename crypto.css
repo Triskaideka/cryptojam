@@ -10,17 +10,27 @@ h1 {
   font-size: 400%;
   letter-spacing: 0.5em;
   width: 100%;
-  background-color: #666;
-  color: #ddd;
   margin: 0;
   padding-bottom: 0.2em;
+}
+
+h1, button {
+  background-color: #657;
+  color: #f3e4ff;
+}
+
+button {
+  font-size: 50%;
+  border-radius: 0.5em;
+  border-width: 1px;
+  padding: 0.5em;
 }
 
 form {
   margin: 0 9%;
   letter-spacing: 0.3em;
-  line-height: 260%;
-  font-size: 200%;
+  line-height: 210%;
+  font-size: 210%;
 }
 
 form span {
@@ -28,9 +38,10 @@ form span {
 }
 
 input {
-  width: 1em;
+  width: 1.1em;
   text-align: center;
   font-size: 90%;
+  margin-right: 2px;
 }
 
 .att {

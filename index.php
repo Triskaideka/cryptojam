@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
 <h1>CRYPTOJAM</h1>
-<form action="solve.php" method="post">
+<form action="solve.php" method="get">
 <?php
 
 // Load the puzzle db
@@ -20,7 +20,7 @@ if ( !empty($_GET['p']) && array_key_exists($_GET['p'], $puzzles) ) {
 } else {
   $pzl_id = array_rand($puzzles);
 }
-echo "<input type=\"hidden\" name=\"id\" value=\"$pzl_id\">";
+echo "<input type=\"hidden\" name=\"p\" value=\"$pzl_id\">";
 $puzzle = $puzzles[ $pzl_id ];
 
 #var_dump($puzzle);
@@ -64,7 +64,7 @@ if ( !empty($puzzle['author']) ) {
   $pzlcode .= "<div class=\"att\">&mdash;<span>";
   foreach ( preg_split('//', strtoupper($puzzle['author']) ) as $c ) {
     if ( preg_match('/[A-Za-z]/', $c) ) {
-      $pzlcode .= "<input placeholder=$c>";
+      $pzlcode .= "<input name=s[] placeholder=$c>";
     } else if ( $c === ' ' ) {
       $pzlcode .= "</span> <span>";
     } else {
@@ -82,4 +82,5 @@ echo "<p><button>Check solution</button></p>";
 </form>
 <p><a href="?p=<?php echo $pzl_id; ?>">Permalink</a> | <a href="./">Try another puzzle</a></p>
 <p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a>.</p>
+<script type="text/javascript" href="jam.js"></script>
 </body></html>
