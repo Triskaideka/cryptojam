@@ -50,11 +50,11 @@ $answer = strtoupper(
 #echo "<br>Answer: " . $answer;
 
 if ($submission === $answer) {
-  echo "<p>Correct!</p>";
+  echo "<p class=\"correct\">&#x2713; Correct!</p>";
   echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
 
 } else {
-  echo "<p>Sorry, that's the wrong answer.</p>";
+  echo "<p class=\"wrong\">&#x2717; Sorry, that's the wrong answer.</p>";
 }
 
 
