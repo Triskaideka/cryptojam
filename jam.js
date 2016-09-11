@@ -58,7 +58,14 @@ ready(function(){
         same_letters[j].value = this.value.toUpperCase();
       }
     });
+
     
+    // Highlight a letter when moving to it -- this makes it easier to change letters you've already entered.
+    // Have to do this on a delay for some reason; nothing happens otherwise.
+    letters[i].addEventListener('focus', function(){
+      fe = this;  // focused element
+      setTimeout(function(){ fe.select(); }, 9);
+    });
     
   } // end of letter field loop
 }); // end of ready function

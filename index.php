@@ -85,9 +85,9 @@ if ( !empty($puzzle['author']) ) {
 
 echo $pzlcode;
 
-echo "<p><button>Check solution</button></p>";
-
 ?>
+<p><button type="reset">Reset puzzle</button>
+<button>Check solution</button></p>
 </form>
 <p><a href="?p=<?php echo $pzl_id; ?>">Permalink</a> | <a href="./">Try another puzzle</a></p>
 <p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a>.</p>
