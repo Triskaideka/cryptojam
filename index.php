@@ -59,7 +59,7 @@ $cipher = array_combine($code1, $code2);
 $pzlcode = '<span>';
 foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
   if ( preg_match('/[A-Za-z]/', $c) ) {
-    $pzlcode .= "<input name=s[] placeholder=$c>";
+    $pzlcode .= "<input name=s[] placeholder=$cipher[$c]>";
   } else if ( $c === ' ' ) {
     $pzlcode .= "</span> <span>";
   } else {
@@ -73,7 +73,7 @@ if ( !empty($puzzle['author']) ) {
   $pzlcode .= "<div class=\"att\">&mdash;<span>";
   foreach ( preg_split('//', strtoupper($puzzle['author']) ) as $c ) {
     if ( preg_match('/[A-Za-z]/', $c) ) {
-      $pzlcode .= "<input name=s[] placeholder=$c>";
+      $pzlcode .= "<input name=s[] placeholder=$cipher[$c]>";
     } else if ( $c === ' ' ) {
       $pzlcode .= "</span> <span>";
     } else {
@@ -91,5 +91,5 @@ echo "<p><button>Check solution</button></p>";
 </form>
 <p><a href="?p=<?php echo $pzl_id; ?>">Permalink</a> | <a href="./">Try another puzzle</a></p>
 <p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a>.</p>
-<script type="text/javascript" href="jam.js"></script>
+<script type="text/javascript" src="jam.js"></script>
 </body></html>
