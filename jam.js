@@ -7,7 +7,7 @@ function ready(fn) {
 }
 
 ready(function(){
-  letters = document.querySelectorAll("input[placeholder]");
+  letters = document.querySelectorAll('input[name="s[]"]');
 
   // Loop through letter fields
   for (i = 0; i < letters.length; i++)  {
@@ -19,6 +19,7 @@ ready(function(){
     // Enable keyboard navigation among the letter fields
     letters[i].setAttribute('data-idx', i);
 
+    // use keydown instead of keyup so the user can hold the key to move quickly
     letters[i].addEventListener('keydown', function(ev){
       self_idx = parseInt(this.getAttribute('data-idx'))
   
@@ -49,5 +50,15 @@ ready(function(){
         .focus();
     });
 
+    
+    // Auto-fill letter fields with the same cipher
+    letters[i].addEventListener('input', function(){
+      same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      for (j = 0; j < same_letters.length; j++)  {
+        same_letters[j].value = this.value.toUpperCase();
+      }
+    });
+    
+    
   } // end of letter field loop
 }); // end of ready function
