@@ -66,6 +66,23 @@ ready(function(){
       fe = this;  // focused element
       setTimeout(function(){ fe.select(); }, 9);
     });
+
     
   } // end of letter field loop
+
+  // Enable keyboard shortcuts for the form buttons
+  document.querySelector("button[type=reset]").innerHTML += '<br><span class="small">(ALT+A)</span>';
+  document.querySelector("button[type=submit]").innerHTML += '<br><span class="small">(ALT+S)</span>';
+  document.addEventListener('keyup', function(ev){
+    if (ev.altKey) {
+      //console.log(ev.keyCode);
+      if (ev.keyCode === 65)  {  // A
+        document.querySelector("button[type=reset]").click();
+      }
+      if (ev.keyCode === 83)  {  // S
+        document.querySelector("button[type=submit]").click();
+      }
+    }
+  });
+
 }); // end of ready function

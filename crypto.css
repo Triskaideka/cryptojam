@@ -26,6 +26,10 @@ button {
   padding: 0.5em;
 }
 
+.small {
+  font-size: 75%;
+}
+
 form {
   margin: 0 9%;
   letter-spacing: 0.3em;
