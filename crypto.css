@@ -5,13 +5,12 @@ body {
 
 h1 {
   text-align: center;
-  position: relative;
-  top: -0.3em;
   font-size: 400%;
   letter-spacing: 0.5em;
   width: 100%;
-  margin: 0;
-  padding-bottom: 0.2em;
+  margin: 0 0 0.3em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
 }
 
 h1, button {
@@ -58,6 +57,29 @@ input {
 
 p {
   text-align: center;
+}
+
+/* Overlay */
+.hid {
+  display: none;
+}
+
+#ol-back {
+  background: rgba(30%, 30%, 30%, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#ol-fore {
+  background: rgba(100%, 100%, 100%, 1);
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  border-radius: 0.5em;
 }
 
 
