@@ -10,6 +10,7 @@ Parameters:
 */ ?>
 <meta charset="utf-8">
 <title>Cryptojam</title>
+<link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
 <h1>CRYPTOJAM</h1>
