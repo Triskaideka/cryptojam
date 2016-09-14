@@ -91,7 +91,7 @@ echo $pzlcode;
 <button type="submit">Check solution</button></p>
 </form>
 <p><a href="?p=<?php echo $pzl_id; ?>">Permalink</a> | <a href="./">Try another puzzle</a></p>
-<p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a>.</p>
-<div id="ol-back" class="hid"><div id="ol-fore"></div></div>
+<p>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></p>
+<div id="ol-back" class="hid"><div id="ol-fore">Loading....</div></div>
 <script type="text/javascript" src="jam.js"></script>
 </body></html>

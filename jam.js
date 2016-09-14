@@ -81,12 +81,12 @@ ready(function(){
 
 
   // Enable keyboard shortcuts for the form buttons
-  // We use SHIFT because CTRL and ALT keystrokes may already have certain uses (e.g. CTRL+R reloads
-  // the page).  Since cryptograms are case-insensitive, there should be no need for the user to use
-  // the SHIFT key on the page.
   document.querySelector("button[type=reset]").innerHTML += '<br><span class="small">(SHIFT+R)</span>';
   document.querySelector("button[type=submit]").innerHTML += '<br><span class="small">(SHIFT+S)</span>';
   document.addEventListener('keypress', function(ev){
+    // We use SHIFT because CTRL and ALT keystrokes may already have certain uses (e.g. CTRL+R reloads
+    // the page).  Since cryptograms are case-insensitive, there should be no need for the user to use
+    // the SHIFT key on the page.
     if (ev.shiftKey) {
       ev.preventDefault();  // so the letter doesn't get typed in the field
       //console.log(ev.keyCode);
@@ -100,6 +100,16 @@ ready(function(){
   });
 
   
+  // Enable keyboard shortcut for dismissing the overlay
+  // Can't combine with the form button shortcuts because they can't use 'keyup' and, for some reason,
+  // this one can't use 'keypress' -- something about some browsers not recognizing Esc properly?
+  document.addEventListener('keyup', function(ev){
+    if (ev.keyCode === 27)  {  // Esc
+      showOL(0);
+    }
+  });
+  
+  
   // Check the solution asynchronously
   document
     .querySelector("form")
@@ -108,7 +118,7 @@ ready(function(){
       ev.preventDefault();
     
       // Build the URL
-      url = "solve.php?a=1&p="
+      url = "solve.php?p="
         + document.querySelector("input[name=p]").value;
 
       for (i = 0; i < letters.length; i++) {
@@ -123,11 +133,15 @@ ready(function(){
 
       request.onload = function() {
         if (this.status >= 200 && this.status < 400) {
-          // Success!
-          var resp = this.response;
+          // Success
+          var code = document.implementation.createHTMLDocument("s");
+          code.documentElement.innerHTML = this.responseText;
+          document.querySelector("#ol-fore").innerHTML = code.documentElement.querySelector('body').innerHTML;
+          showOL(1);
         } else {
           // We reached our target server, but it returned an error
-
+          document.querySelector("#ol-fore").innerHTMl = "Error";
+          showOL(1);
         }
       };
 
@@ -139,3 +153,13 @@ ready(function(){
   });
   
 }); // end of ready function
+
+
+// shortcut function to show or hide the overlay
+function showOL(on) {
+  if (on) {
+    document.querySelector("#ol-back").classList.remove('hid');
+  } else {
+    document.querySelector("#ol-back").classList.add('hid');
+  }
+}
