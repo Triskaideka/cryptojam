@@ -80,7 +80,8 @@ ready(function(){
   } // end of letter field loop
 
 
-  // Enable keyboard shortcuts for the form buttons
+  // Enable keyboard shortcuts
+  document.querySelector("a[href='./']").innerHTML += ' <span class="small">(SHIFT+N)</span>';
   document.querySelector("button[type=reset]").innerHTML += '<br><span class="small">(SHIFT+R)</span>';
   document.querySelector("button[type=submit]").innerHTML += '<br><span class="small">(SHIFT+S)</span>';
   document.addEventListener('keypress', function(ev){
@@ -90,10 +91,20 @@ ready(function(){
     if (ev.shiftKey) {
       ev.preventDefault();  // so the letter doesn't get typed in the field
       //console.log(ev.keyCode);
-      if (ev.keyCode === 82)  {  // R
+
+      // N: [n]ew puzzle (reload the page)
+      // (should maybe get confirmation from the user before doing this... or permit it only when the overlay is open)
+      if (ev.keyCode === 78)  {
+        location.href = './';  // can't use window.reload() because there might be a puzzle ID in the URL
+      }
+      
+      // R: [r]eset the puzzle
+      if (ev.keyCode === 82)  {
         document.querySelector("button[type=reset]").click();
       }
-      if (ev.keyCode === 83)  {  // S
+      
+      // S: check the [s]olution
+      if (ev.keyCode === 83)  {
         document.querySelector("button[type=submit]").click();
       }
     }
