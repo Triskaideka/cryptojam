@@ -45,7 +45,7 @@ input {
   width: 1.1em;
   text-align: center;
   font-size: 90%;
-  margin-right: 2px;
+  margin-right: 0.1em;
 }
 
 .att {
@@ -59,6 +59,7 @@ input {
 p {
   text-align: center;
 }
+
 
 /* Overlay */
 .hid {

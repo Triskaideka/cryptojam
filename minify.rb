@@ -1,9 +1,34 @@
 #!/usr/bin/env ruby
 
-### Minify the CSS file
+require 'json/pure'   # gem install json_pure
 require 'cssminify'   # gem install cssminify
 require 'uglifier'    # gem install therubyracer; gem install uglifier
 
+
+### Organize the JSON file
+json_filename = 'grams.json'
+
+if File.file?(json_filename) then
+
+  # Read in the JSON file
+  qfile = File.open(json_filename, 'r')
+  quotes = JSON.parse( qfile.readlines.join() )
+  qfile.close
+
+  # Sort alphabetically by author
+  quotes = quotes.sort_by{|id,puzzle| puzzle['author']}.to_h
+
+  # Write the sorted file
+  File.write(
+    json_filename,
+    JSON.pretty_generate(quotes, {'indent'=>'  '})
+  )
+
+  puts "Finished writing #{json_filename}.  There are #{quotes.length} puzzles."
+end
+
+
+### Minify the CSS file
 src_css_filename = 'crypto.css'
 min_css_filename = 'c.css'
 
