@@ -97,7 +97,7 @@ ready(function(){
       if (ev.keyCode === 78)  {
         location.href = './';  // can't use window.reload() because there might be a puzzle ID in the URL
       }
-      
+
       // R: [r]eset the puzzle
       if (ev.keyCode === 82)  {
         document.querySelector("button[type=reset]").click();
@@ -151,13 +151,14 @@ ready(function(){
           showOL(1);
         } else {
           // We reached our target server, but it returned an error
-          document.querySelector("#ol-fore").innerHTMl = "Error";
+          document.querySelector("#ol-fore").innerHTML = "Sorry, but something went wrong while checking your solution.";
           showOL(1);
         }
       };
 
       request.onerror = function() {
-        // There was a connection error of some sort
+        // If there was a connection error, try just going to the solution URL, for what it's worth.
+        location.href = url;
       };
 
       request.send();

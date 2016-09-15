@@ -1,20 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Cryptojam solution</title>
+<link rel="stylesheet" href="crypto.css" type="text/css"></head><body>
 <?php
 /*
 solve.php for Cryptojam
 Author: Triskaideka
 License: MIT
 
-Arguments:
+Parameters:
   p = Puzzle ID
   s = Solution (array of letters)
-  a = Asynchronous? (indicates whether to display a full page or not)
 */
-
-// Document head
-if ( empty($_REQUEST['a']) || !$_REQUEST['a']) {
-  ?><!doctype html><html><head><meta charset="utf-8"><title>Cryptojam solution</title>
-  <link rel="stylesheet" href="crypto.css" type="text/css"></head><body><?php
-}
 
 // Load the puzzle db
 $puzzles = json_decode(file_get_contents('grams.json'), true);
@@ -59,6 +54,4 @@ if ($submission === $answer) {
 
 
 // End of document
-if ( empty($_REQUEST['a']) || !$_REQUEST['a']) {
-  echo "<p><a href=\"./\">Try another puzzle</a></p></body></html>";
-}
+?><p><a href=\"./\">Try another puzzle</a></p></body></html>

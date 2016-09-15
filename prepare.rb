@@ -18,6 +18,21 @@ if File.file?(json_filename) then
   # Sort alphabetically by author
   quotes = quotes.sort_by{|id,puzzle| puzzle['author']}.to_h
 
+  # Do some analysis
+  longest = 0
+  longest_id = ''
+  quotes.each { |id,puzzle|
+    len = puzzle['text'].length + puzzle['author'].length
+    if len > longest then
+      longest = len
+      longest_id = id
+    end
+
+    puts puzzle['source']
+  }
+  puts "The longest puzzle is #{longest_id}, with #{longest} characters."
+    
+    
   # Write the sorted file
   File.write(
     json_filename,
