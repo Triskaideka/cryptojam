@@ -1,5 +1,5 @@
 <!doctype html>
-<html><head>
+<html lang="en"><head>
 <?php /*
 index.php for Cryptojam
 Author: Triskaideka
