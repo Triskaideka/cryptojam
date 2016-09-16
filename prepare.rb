@@ -28,7 +28,12 @@ if File.file?(json_filename) then
       longest_id = id
     end
 
-    puts puzzle['source']
+    =begin
+    # Help with finding missing source links
+    if puzzle['source'].nil? then
+      puts "<a href=\"https://en.wikiquote.org/wiki/#{puzzle['author'].gsub(/ /,'_')}\">#{puzzle['author']}</a><br>"
+    end
+    =end
   }
   puts "The longest puzzle is #{longest_id}, with #{longest} characters."
     

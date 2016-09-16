@@ -28,8 +28,15 @@ if ( empty($_REQUEST['s']) || !is_array($_REQUEST['s']) ) {
   exit;
 }
 
+// Fill holes in the provided solution with underscores, to make it easier to identify omissions
+$letters = array_map(
+  function ($l) { return empty($l) ? '_' : $l; },
+  $_REQUEST['s']
+);
+  
 // Compare the solution to the db
-$submission = strtoupper( implode('', $_REQUEST['s']) );
+$submission = strtoupper( implode('', $letters) );
+$wrappable_submission = strtoupper( implode(' ', $letters) );
 
 $puzzle = $puzzles[$_REQUEST['p']];
 $answer = strtoupper(
@@ -47,9 +54,9 @@ $answer = strtoupper(
 if ($submission === $answer) {
   echo "<p class=\"correct\">&#x2713; Correct!</p>";
   echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
-
 } else {
-  echo "<p class=\"wrong\">&#x2717; Sorry, that's the wrong answer.</p>";
+  echo "<p class=\"wrong\">&#x2717; Sorry, that's not the answer.</p>";
+  echo "<div class=\"proof\"><div>$wrappable_submission</div></div>";
 }
 
 
