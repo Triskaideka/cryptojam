@@ -1,7 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cryptojam solution</title>
-<link rel="stylesheet" href="crypto.css" type="text/css"></head><body>
-<?php
-/*
+<?php /*
 solve.php for Cryptojam
 Author: Triskaideka
 License: MIT
@@ -11,6 +8,15 @@ Parameters:
   s = Solution (array of letters)
 */
 
+  // gzip the output
+  if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
+    ob_start(“ob_gzhandler”);
+  } else {
+    ob_start(); 
+  }
+?><!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cryptojam solution</title>
+<link rel="stylesheet" href="crypto.css" type="text/css"></head><body>
+<?php
 // Load the puzzle db
 $puzzles = json_decode(file_get_contents('grams.json'), true);
 
