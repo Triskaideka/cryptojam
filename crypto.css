@@ -60,6 +60,21 @@ p {
   text-align: center;
 }
 
+ul {
+  text-align: center;
+}
+
+li {
+  display: inline;
+  list-style-type: none;
+  margin: 0 1em 0 0;
+  padding: 0 0 0 1em;
+}
+
+li:not(:first-child) {
+  border-left: 1px solid #666;  
+}
+
 
 /* Overlay */
 .hid {
@@ -78,7 +93,7 @@ p {
 #ol-fore {
   background: rgba(100%, 100%, 100%, 1);
   position: fixed;
-  top: 20%;
+  top: 10%;
   left: 20%;
   width: 60%;
   border-radius: 0.5em;

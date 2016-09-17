@@ -60,11 +60,12 @@ $answer = strtoupper(
 if ($submission === $answer) {
   echo "<p class=\"correct\">&#x2713; Correct!</p>";
   echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
+  echo "<p><a href=\"$puzzle[source]\">Source</a></p>";
 } else {
   echo "<p class=\"wrong\">&#x2717; Sorry, that's not the answer.</p>";
-  echo "<div class=\"proof\"><div>$wrappable_submission</div></div>";
+  echo "<div>$wrappable_submission</div>";
 }
 
 
 // End of document
-?><p><a href=\"./\">Try another puzzle</a></p></body></html>
+?><p><a href="./">Try another puzzle</a></p></body></html>

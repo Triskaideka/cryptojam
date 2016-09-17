@@ -22,18 +22,18 @@ if File.file?(json_filename) then
   longest = 0
   longest_id = ''
   quotes.each { |id,puzzle|
+    if id === '' then puts "There's a puzzle with no ID." end
+    
     len = puzzle['text'].length + puzzle['author'].length
     if len > longest then
       longest = len
       longest_id = id
     end
 
-=begin
-    # Help with finding missing source links
-    if puzzle['source'].nil? then
-      puts "<a href=\"https://en.wikiquote.org/wiki/#{puzzle['author'].gsub(/ /,'_')}\">#{puzzle['author']}</a><br>"
-    end
-=end
+    ## Help with finding missing source links
+    #if puzzle['source'].nil? then
+    #  puts "<a href=\"https://en.wikiquote.org/wiki/#{puzzle['author'].gsub(/ /,'_')}\">#{puzzle['author']}</a><br>"
+    #end
   }
   puts "The longest puzzle is #{longest_id}, with #{longest} characters."
     
