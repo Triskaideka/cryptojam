@@ -99,6 +99,7 @@ echo $pzlcode;
 </form>
 <ul><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
 <li>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></ul>
-<div id="ol-back" class="hid"><div id="ol-fore">Loading....</div></div>
+<div id="ol-back" class="hid"><div id="ol-fore"><div id="ol-close"><a href="">Close (<kbd>ESC</kbd>)</a></div>
+<div id="ol-body">Loading....</div></div></div>
 <script type="text/javascript" src="jam.js"></script>
 </body></html>

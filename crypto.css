@@ -25,10 +25,6 @@ button {
   padding: 0.5em;
 }
 
-.small {
-  font-size: 75%;
-}
-
 form {
   margin: 0 9%;
   letter-spacing: 0.3em;
@@ -67,8 +63,11 @@ ul {
 li {
   display: inline;
   list-style-type: none;
-  margin: 0 1em 0 0;
-  padding: 0 0 0 1em;
+  padding: 0 1em;
+}
+
+li:last-child {
+  margin-right: 2em;
 }
 
 li:not(:first-child) {
@@ -97,15 +96,19 @@ li:not(:first-child) {
   left: 20%;
   width: 60%;
   border-radius: 0.5em;
-  padding: 1em;
+  padding: 0.5em 1em;
+}
+
+#ol-close {
+  text-align: right;
 }
 
 
 /* Answer page */
 .proof {
-  margin: 1em 20%;
-  font-family: cursive, serif;
+  margin: 1em 5%;
   font-size: 200%;
+  font-family: serif;
   font-style: italic;
 }
 

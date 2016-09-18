@@ -6,6 +6,7 @@ License: MIT
 Parameters:
   p = Puzzle ID
   s = Solution (array of letters)
+  z = indicates user is giving up and wants to see the solution
 */
 
   // gzip the output
@@ -34,6 +35,8 @@ if ( empty($_REQUEST['s']) || !is_array($_REQUEST['s']) ) {
   exit;
 }
 
+$id = $_REQUEST['p'];
+  
 // Fill holes in the provided solution with underscores, to make it easier to identify omissions
 $letters = array_map(
   function ($l) { return empty($l) ? '_' : $l; },
@@ -42,9 +45,9 @@ $letters = array_map(
   
 // Compare the solution to the db
 $submission = strtoupper( implode('', $letters) );
-$wrappable_submission = strtoupper( implode(' ', $letters) );
+$wrappable_submission = strtoupper( implode('&#x200b;', $letters) );
 
-$puzzle = $puzzles[$_REQUEST['p']];
+$puzzle = $puzzles[$id];
 $answer = strtoupper(
   preg_replace(
     "/[^A-Za-z]/",
@@ -60,12 +63,12 @@ $answer = strtoupper(
 if ($submission === $answer) {
   echo "<p class=\"correct\">&#x2713; Correct!</p>";
   echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
-  echo "<p><a href=\"$puzzle[source]\">Source</a></p>";
+  echo "<ul><li><a href=\"$puzzle[source]\">Source</a><li><a href=\"./\">Try another puzzle</a></ul>";
 } else {
   echo "<p class=\"wrong\">&#x2717; Sorry, that's not the answer.</p>";
   echo "<div>$wrappable_submission</div>";
+  echo "<ul><li><a href=\"./?p=$id\">Keep trying</a><li><a href=\"solve.php?p=$id&amp;z=1\">See the solution</a></ul>";
 }
 
-
 // End of document
-?><p><a href="./">Try another puzzle</a></p></body></html>
+?></body></html>

@@ -81,9 +81,9 @@ ready(function(){
 
 
   // Enable keyboard shortcuts
-  document.querySelector("a[href='./']").innerHTML += ' <span class="small">(SHIFT+N)</span>';
-  document.querySelector("button[type=reset]").innerHTML += '<br><span class="small">(SHIFT+R)</span>';
-  document.querySelector("button[type=submit]").innerHTML += '<br><span class="small">(SHIFT+S)</span>';
+  document.querySelector("a[href='./']").innerHTML += ' (<kbd>SHIFT+N</kbd>)';
+  document.querySelector("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
+  document.querySelector("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
   document.addEventListener('keypress', function(ev){
     // We use SHIFT because CTRL and ALT keystrokes may already have certain uses (e.g. CTRL+R reloads
     // the page).  Since cryptograms are case-insensitive, there should be no need for the user to use
@@ -110,6 +110,12 @@ ready(function(){
     }
   });
 
+  
+  // Enable link for dismissing the overlay
+  document.querySelector("#ol-close a").addEventListener('click', function(ev){
+    ev.preventDefault();
+    showOL(0);
+  });
   
   // Enable keyboard shortcut for dismissing the overlay
   // Can't combine with the form button shortcuts because they can't use 'keyup' and, for some reason,
@@ -147,11 +153,11 @@ ready(function(){
           // Success
           var code = document.implementation.createHTMLDocument("s");
           code.documentElement.innerHTML = this.responseText;
-          document.querySelector("#ol-fore").innerHTML = code.documentElement.querySelector('body').innerHTML;
+          document.querySelector("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
           showOL(1);
         } else {
           // We reached our target server, but it returned an error
-          document.querySelector("#ol-fore").innerHTML = "Sorry, but something went wrong while checking your solution.";
+          document.querySelector("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
           showOL(1);
         }
       };
@@ -171,6 +177,7 @@ ready(function(){
 function showOL(on) {
   if (on) {
     document.querySelector("#ol-back").classList.remove('hid');
+    document.querySelector("#ol-close a").focus();
   } else {
     document.querySelector("#ol-back").classList.add('hid');
   }
