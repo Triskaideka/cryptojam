@@ -81,7 +81,6 @@ ready(function(){
 
 
   // Enable keyboard shortcuts
-  document.querySelector("a[href='./']").innerHTML += ' (<kbd>SHIFT+N</kbd>)';
   document.querySelector("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
   document.querySelector("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
   document.addEventListener('keypress', function(ev){
@@ -91,12 +90,6 @@ ready(function(){
     if (ev.shiftKey) {
       ev.preventDefault();  // so the letter doesn't get typed in the field
       //console.log(ev.keyCode);
-
-      // N: [n]ew puzzle (reload the page)
-      // (should maybe get confirmation from the user before doing this... or permit it only when the overlay is open)
-      if (ev.keyCode === 78)  {
-        location.href = './';  // can't use window.reload() because there might be a puzzle ID in the URL
-      }
 
       // R: [r]eset the puzzle
       if (ev.keyCode === 82)  {
