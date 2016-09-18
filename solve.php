@@ -45,7 +45,7 @@ $letters = array_map(
   
 // Compare the solution to the db
 $submission = strtoupper( implode('', $letters) );
-$wrappable_submission = strtoupper( implode('&#x200b;', $letters) );
+$wrappable_submission = strtoupper( implode(' ', $letters) );  // tried &#x200b; (zero-width space) but didn't like it
 
 $puzzle = $puzzles[$id];
 $answer = strtoupper(
@@ -67,7 +67,8 @@ if ($submission === $answer) {
 } else {
   echo "<p class=\"wrong\">&#x2717; Sorry, that's not the answer.</p>";
   echo "<div>$wrappable_submission</div>";
-  echo "<ul><li><a href=\"./?p=$id\">Keep trying</a><li><a href=\"solve.php?p=$id&amp;z=1\">See the solution</a></ul>";
+  echo "<ul><li><a href=\"./?p=$id\" id=\"try\">Keep trying</a>";
+  echo "<li><a href=\"solve.php?p=$id&amp;z=1\" id=\"quit\">See the solution</a></ul>";
 }
 
 // End of document

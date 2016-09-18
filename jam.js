@@ -149,21 +149,35 @@ ready(function(){
       request.open('GET', url, true);
 
       request.onload = function() {
+        // Success
         if (this.status >= 200 && this.status < 400) {
-          // Success
+          // make a new document with the received code
           var code = document.implementation.createHTMLDocument("s");
           code.documentElement.innerHTML = this.responseText;
+          
+          // insert the body of the received code into the body of the overlay
           document.querySelector("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
+
+          // make the "try again" link just dismiss the overlay
+          if ( document.querySelector('a#try') !== null ) {
+            document.querySelector('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
+          }
+          
+          // got to do something with the "give up" link
+          // ...
+          
+          // reveal the overlay
           showOL(1);
+
+        // Failure (reached the target server, but it returned an error)
         } else {
-          // We reached our target server, but it returned an error
           document.querySelector("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
           showOL(1);
         }
       };
 
+      // Also failure: if there was a connection error, try just going to the solution URL, for what it's worth.
       request.onerror = function() {
-        // If there was a connection error, try just going to the solution URL, for what it's worth.
         location.href = url;
       };
 
@@ -177,8 +191,9 @@ ready(function(){
 function showOL(on) {
   if (on) {
     document.querySelector("#ol-back").classList.remove('hid');
-    document.querySelector("#ol-close a").focus();
+    document.querySelector("#ol-close a").focus();  // focus on the close link
   } else {
     document.querySelector("#ol-back").classList.add('hid');
+    document.querySelector('input[name="s[]"]').focus();  // focus on the first letter field
   }
 }
