@@ -25,6 +25,10 @@ ready(function(){
     letters[i].setAttribute('maxlength', 1);
 
     
+    // Add an ARIA label to each letter field
+    letters[i].setAttribute( 'aria-label', 'Cipher letter ' + letters[i].getAttribute('placeholder') );
+    
+    
     // Enable keyboard navigation among the letter fields
     letters[i].setAttribute('data-idx', i);
 
