@@ -19,15 +19,13 @@ if File.file?(json_filename) then
   quotes = quotes.sort_by{|id,puzzle| puzzle['author']}.to_h
 
   # Do some analysis
-  longest = 0
-  longest_id = ''
+  threshold = 250  # this is just my general idea about what might be a dangerously long quote
   quotes.each { |id,puzzle|
     if id === '' then puts "There's a puzzle with no ID." end
     
     len = puzzle['text'].length + puzzle['author'].length
-    if len > longest then
-      longest = len
-      longest_id = id
+    if len > threshold then
+      puts "Puzzle \"#{id}\" has #{len} characters."
     end
 
     ## Help with finding missing source links
@@ -35,7 +33,6 @@ if File.file?(json_filename) then
     #  puts "<a href=\"https://en.wikiquote.org/wiki/#{puzzle['author'].gsub(/ /,'_')}\">#{puzzle['author']}</a><br>"
     #end
   }
-  puts "The longest puzzle is #{longest_id}, with #{longest} characters."
     
     
   # Write the sorted file
