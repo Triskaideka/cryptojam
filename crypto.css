@@ -71,7 +71,7 @@ li:last-child {
 }
 
 li:not(:first-child) {
-  border-left: 1px solid #666;  
+  border-left: 1px dotted #666;  
 }
 
 

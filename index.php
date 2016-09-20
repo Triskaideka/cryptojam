@@ -20,8 +20,8 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
-<h1>CRYPTOJAM</h1>
-<form action="solve.php" method="get">
+<header><h1>CRYPTOJAM</h1></header>
+<main><form action="solve.php" method="get">
 <?php
 
 // Load the puzzle db
@@ -96,9 +96,9 @@ echo $pzlcode;
 ?>
 <p><button type="reset">Reset puzzle</button>
 <button type="submit">Check solution</button></p>
-</form>
-<ul><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
-<li>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></ul>
+</form></main>
+<footer><ul><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
+<li>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></ul></footer>
 <div id="ol-back" class="hid"><div id="ol-fore"><div id="ol-close"><a href="">Close (<kbd>ESC</kbd>)</a></div>
 <div id="ol-body">Loading....</div></div></div>
 <script type="text/javascript" src="jam.js"></script>

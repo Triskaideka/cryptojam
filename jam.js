@@ -64,12 +64,17 @@ ready(function(){
     });
 
     
-    // Auto-fill letter fields with the same cipher
+    // When the user types in a letter field:
     letters[i].addEventListener('input', function(){
+      // Auto-fill all letter fields that have the same cipher
       same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
       for (j = 0; j < same_letters.length; j++)  {
         same_letters[j].value = this.value.toUpperCase();
       }
+
+      // Immediately select the contents of the field so the user can change their mind about it without pressing backspace
+      fe = this;  // focused element
+      setTimeout(function(){ fe.select(); }, 9);
     });
 
     

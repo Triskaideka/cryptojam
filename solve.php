@@ -16,7 +16,7 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
   ob_start(); 
 }
 ?><!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cryptojam solution</title>
-<link rel="stylesheet" href="crypto.css" type="text/css"></head><body>
+<link rel="stylesheet" href="crypto.css" type="text/css"></head><body><main>
 <?php
 // Load the puzzle db
 $puzzles = json_decode(file_get_contents('grams.json'), true);
@@ -46,8 +46,8 @@ $puzzle = $puzzles[$id];
 // Compare this to the code if the user got the right solution; they're pretty 
 // similar (I thought about combining them... and I still might).
 if ( !empty($_REQUEST['z']) && $_REQUEST['z'] ) {
-  echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
-  echo "<ul><li><a href=\"$puzzle[source]\">Source</a><li><a href=\"./\">Try another puzzle</a></ul></body></html>";
+  echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div></main>";
+  echo "<nav><ul><li><a href=\"$puzzle[source]\">Source</a><li><a href=\"./\">Try another puzzle</a></ul></nav></body></html>";
   exit;  
 }
   
@@ -75,13 +75,13 @@ $answer = strtoupper(
 
 if ($submission === $answer) {
   echo "<p class=\"correct\">&#x2713; Correct!</p>";
-  echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div>";
-  echo "<ul><li><a href=\"$puzzle[source]\">Source</a><li><a href=\"./\">Try another puzzle</a></ul>";
+  echo "<div class=\"proof\"><div>$puzzle[text]</div><div class=\"att\">&mdash;$puzzle[author]</div></div></main>";
+  echo "<nav><ul><li><a href=\"$puzzle[source]\">Source</a><li><a href=\"./\">Try another puzzle</a></ul></nav>";
 } else {
   echo "<p class=\"wrong\">&#x2717; Sorry, that's not the answer.</p>";
-  echo "<div>$wrappable_submission</div>";
-  echo "<ul><li><a href=\"./?p=$id\" id=\"try\">Keep trying</a>";
-  echo "<li><a href=\"solve.php?p=$id&amp;z=1\" id=\"quit\">See the solution</a></ul>";
+  echo "<div>$wrappable_submission</div></main>";
+  echo "<nav><ul><li><a href=\"./?p=$id\" id=\"try\">Keep trying</a>";
+  echo "<li><a href=\"solve.php?p=$id&amp;z=1\" id=\"quit\">See the solution</a></ul></nav>";
 }
 
 // End of document
