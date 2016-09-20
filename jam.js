@@ -142,46 +142,58 @@ ready(function(){
       //console.log(url);
     
       // Make the AJAX request
-      var request = new XMLHttpRequest();
-      request.open('GET', url, true);
-
-      request.onload = function() {
-        // Success
-        if (this.status >= 200 && this.status < 400) {
-          // make a new document with the received code
-          var code = document.implementation.createHTMLDocument("s");
-          code.documentElement.innerHTML = this.responseText;
-          
-          // insert the body of the received code into the body of the overlay
-          document.querySelector("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
-
-          // make the "try again" link just dismiss the overlay
-          if ( document.querySelector('a#try') !== null ) {
-            document.querySelector('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
-          }
-          
-          // got to do something with the "give up" link
-          // ...
-          
-          // reveal the overlay
-          showOL(1);
-
-        // Failure (reached the target server, but it returned an error)
-        } else {
-          document.querySelector("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
-          showOL(1);
-        }
-      };
-
-      // Also failure: if there was a connection error, try just going to the solution URL, for what it's worth.
-      request.onerror = function() {
-        location.href = url;
-      };
-
-      request.send();
-  });
+      ajax(url);
+    });
   
 }); // end of ready function
+
+
+function ajax(url) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+
+  request.onload = function() {
+    // Success
+    if (this.status >= 200 && this.status < 400) {
+      // make a new document with the received code
+      var code = document.implementation.createHTMLDocument("s");
+      code.documentElement.innerHTML = this.responseText;
+
+      // insert the body of the received code into the body of the overlay
+      document.querySelector("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
+
+      // make the "try again" link just dismiss the overlay
+      if ( document.querySelector('a#try') !== null ) {
+        document.querySelector('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
+      }
+
+      // enable the "give up" link
+      if ( document.querySelector('a#quit') !== null ) {
+        document
+          .querySelector('a#quit')
+          .addEventListener('click', function(ev){
+            ev.preventDefault();
+            ajax( 'solve.php?z=1&p=' + document.querySelector('input[name=p]').getAttribute('value') );
+          })
+      }
+
+      // reveal the overlay
+      showOL(1);
+
+    // Failure (reached the target server, but it returned an error)
+    } else {
+      document.querySelector("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
+      showOL(1);
+    }
+  };
+
+  // Also failure: if there was a connection error, try just going to the solution URL, for what it's worth.
+  request.onerror = function() {
+    location.href = url;
+  };
+
+  request.send();
+}
 
 
 // shortcut function to show or hide the overlay
