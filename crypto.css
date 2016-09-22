@@ -44,6 +44,10 @@ input {
   margin-right: 0.1em;
 }
 
+.same {
+  background-color: #f3e4ff;
+}
+
 .att {
   text-align: right;
 }
@@ -101,6 +105,10 @@ li:not(:first-child) {
 
 #ol-close {
   text-align: right;
+}
+
+a {
+  padding: 3px;
 }
 
 

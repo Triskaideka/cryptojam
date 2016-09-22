@@ -66,7 +66,7 @@ ready(function(){
     
     // When the user types in a letter field:
     letters[i].addEventListener('input', function(){
-      // Auto-fill all letter fields that have the same cipher
+      // Auto-fill all letter fields that have the same cipher as this one
       same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
       for (j = 0; j < same_letters.length; j++)  {
         same_letters[j].value = this.value.toUpperCase();
@@ -78,9 +78,22 @@ ready(function(){
     });
 
     
-    // Highlight a letter when moving to it -- this makes it easier to change letters you've already entered.
-    // Have to do this on a delay for some reason; nothing happens otherwise.
+    letters[i].addEventListener('blur', function(){
+      // Remove the background coloring from all letter fields that previously had it
+      for (j = 0; j < letters.length; j++)  {
+        letters[j].classList.remove('same');
+      }
+    });
+                                
     letters[i].addEventListener('focus', function(){
+      // Add the background coloring to all letter fields with the same cipher letter as this one
+      same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      for (j = 0; j < same_letters.length; j++)  {
+        same_letters[j].classList.add('same');
+      }
+      
+      // Highlight a letter when moving to it -- this makes it easier to change letters you've already entered.
+      // Have to do this on a delay for some reason; nothing happens otherwise.
       fe = this;  // focused element
       setTimeout(function(){ fe.select(); }, 9);
     });
