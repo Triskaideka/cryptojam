@@ -97,7 +97,7 @@ echo $pzlcode;
 <p><button type="reset">Reset puzzle</button>
 <button type="submit">Check solution</button></p>
 </form></main>
-<footer><ul><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
+<footer><ul><li><a id="help" href="help.php">Instructions</a></li><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
 <li>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></ul></footer>
 <div id="ol-back" class="hid"><div id="ol-fore"><div id="ol-close"><a href="">Close (<kbd>ESC</kbd>)</a></div>
 <div id="ol-body">Loading....</div></div></div>

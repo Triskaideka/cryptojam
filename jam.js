@@ -97,12 +97,12 @@ ready(function(){
       fe = this;  // focused element
       setTimeout(function(){ fe.select(); }, 9);
     });
-
     
   } // end of letter field loop
 
 
   // Enable keyboard shortcuts
+  document.querySelector("a#help").innerHTML += ' (<kbd>SHIFT+I</kbd>)';
   document.querySelector("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
   document.querySelector("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
   document.addEventListener('keypress', function(ev){
@@ -111,8 +111,13 @@ ready(function(){
     // the SHIFT key on the page.
     if (ev.shiftKey) {
       ev.preventDefault();  // so the letter doesn't get typed in the field
-      //console.log(ev.keyCode);
+      console.log(ev.keyCode);
 
+      // I: read [i]nstructions
+      if (ev.keyCode === 73)  {
+        document.querySelector("a#help").click();
+      }
+      
       // R: [r]eset the puzzle
       if (ev.keyCode === 82)  {
         document.querySelector("button[type=reset]").click();
@@ -141,6 +146,13 @@ ready(function(){
     }
   });
   
+  
+  // Enable the help link
+  document.querySelector("a#help").addEventListener('click', function(ev){
+    ev.preventDefault();
+    ajax("help.php");
+  });
+
   
   // Check the solution asynchronously
   document

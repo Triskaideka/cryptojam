@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  color: #000;
+  background-color: #fff;
   margin: 0;
 }
 
@@ -15,7 +17,7 @@ h1 {
 
 h1, button {
   background-color: #657;
-  color: #f3e4ff;
+  color: #f7efff;
 }
 
 button {
@@ -42,12 +44,15 @@ input {
   text-align: center;
   font-size: 90%;
   margin-right: 0.1em;
+  border-width: 1px;
 }
 
+/* Applied dynamically to letter fields that share a letter */
 .same {
-  background-color: #f3e4ff;
+  background-color: #f7efff;
 }
 
+/* Attribution */
 .att {
   text-align: right;
 }
@@ -64,18 +69,26 @@ ul {
   text-align: center;
 }
 
-li {
+ul li {
   display: inline;
   list-style-type: none;
   padding: 0 1em;
 }
 
-li:last-child {
+ul li:last-child {
   margin-right: 2em;
 }
 
-li:not(:first-child) {
+ul li:not(:first-child) {
   border-left: 1px dotted #666;  
+}
+
+ol li {
+  margin-bottom: 0.5em;
+}
+
+a {
+  padding: 3px;
 }
 
 
@@ -105,10 +118,6 @@ li:not(:first-child) {
 
 #ol-close {
   text-align: right;
-}
-
-a {
-  padding: 3px;
 }
 
 
