@@ -21,13 +21,14 @@ h1, button {
 }
 
 button {
-  font-size: 50%;
+  font-size: 110%;
   border-radius: 0.5em;
   border-width: 1px;
   padding: 0.5em;
 }
 
-form {
+/* This covers the letter fields, and the punctuation among them */
+form > div {
   margin: 0 9%;
   letter-spacing: 0.3em;
   line-height: 180%;
@@ -35,10 +36,12 @@ form {
   font-weight: bold;
 }
 
+/* This applies to letter fields that aren't separated by whitespace, i.e. words */
 form span {
   white-space: pre;
 }
 
+/* This should only apply to letter fields, because <button> is used for the buttons */
 input {
   width: 1.2em;
   text-align: center;
@@ -88,11 +91,12 @@ ol li {
 }
 
 a {
-  padding: 3px;
+  padding: 3px; /* This is just to make the outlines on focused links look nicer */
 }
 
 
-/* Overlay */
+/*** Overlay ***/
+
 .hid {
   display: none;
 }
@@ -121,7 +125,9 @@ a {
 }
 
 
-/* Answer page */
+/*** Answer page ***/
+
+/* Shows the quote when you get it right, or when you give up */
 .proof {
   margin: 1em 5%;
   font-size: 200%;

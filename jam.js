@@ -2,9 +2,6 @@
 jam.js for Cryptojam
 Author: Triskaideka
 License: MIT
-
-Thanks go to random people who answer questions on the internet, but most especialy to 
-http://youmightnotneedjquery.com/ , for important parts of the code in this file.
 */
 
 function ready(fn) {
@@ -14,6 +11,9 @@ function ready(fn) {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
+
+// shortcut function
+function qs(s) { return document.querySelector(s); }
 
 ready(function(){
   letters = document.querySelectorAll('input[name="s[]"]');
@@ -105,13 +105,18 @@ ready(function(){
   document.querySelector("a#help").innerHTML += ' (<kbd>SHIFT+I</kbd>)';
   document.querySelector("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
   document.querySelector("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
-  document.addEventListener('keypress', function(ev){
+
+  // Wanted to use 'keypress' but had to use 'keydown' because apparently Firefox (unlike Chrome and Opera) 
+  // fires the keypress event when SHIFT is held down all by itself, and then doesn't fire it again when you 
+  // press a letter key while holding SHIFT.
+  document.addEventListener('keydown', function(ev){
+    
     // We use SHIFT because CTRL and ALT keystrokes may already have certain uses (e.g. CTRL+R reloads
     // the page).  Since cryptograms are case-insensitive, there should be no need for the user to use
     // the SHIFT key on the page.
     if (ev.shiftKey) {
+      //console.log(ev.keyCode);
       ev.preventDefault();  // so the letter doesn't get typed in the field
-      console.log(ev.keyCode);
 
       // I: read [i]nstructions
       if (ev.keyCode === 73)  {
@@ -128,7 +133,7 @@ ready(function(){
         document.querySelector("button[type=submit]").click();
       }
     }
-  });
+  });  // end keydown listener
 
   
   // Enable link for dismissing the overlay

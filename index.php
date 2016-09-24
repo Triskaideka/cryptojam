@@ -21,7 +21,7 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
 <link rel="stylesheet" href="crypto.css" type="text/css">
 </head><body>
 <header><h1>CRYPTOJAM</h1></header>
-<main><form action="solve.php" method="get">
+<main><form action="solve.php" method="get" autocomplete="off"><div>
 <?php
 
 // Load the puzzle db
@@ -94,6 +94,7 @@ if ( !empty($puzzle['author']) ) {
 echo $pzlcode;
 
 ?>
+</div>
 <p><button type="reset">Reset puzzle</button>
 <button type="submit">Check solution</button></p>
 </form></main>
