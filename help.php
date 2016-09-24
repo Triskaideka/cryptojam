@@ -22,8 +22,8 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
   
 <ol>
 <li><strong>Focus on short words first.</strong>  In English, a one-letter word must be either <samp>A</samp> or <samp>I</samp>.  Two- or three-letter words are likely to be prepositions, articles, or conjunctions.</li>
-<li><strong>Use punctuation as a guide,</strong> especially apostrophes. A single letter following an apostrophe is probably a possessive <samp>S</samp>, but it could be <samp>T</samp>, as in <samp>CAN'T</samp> or <samp>WOULDN'T</samp>.  Two letters following an apostrophe are probably <samp>RE</samp> or <samp>VE</samp>, as in <samp>THEY'RE</samp> or <samp>WE'VE</samp>.</li>
+<li><strong>Use punctuation as a guide,</strong> especially apostrophes. A single letter following an apostrophe might be a possessive <samp>S</samp>, or it might be <samp>T</samp>, as in <samp>CAN'T</samp> or <samp>WOULDN'T</samp>.  Two letters following an apostrophe could be <samp>RE</samp> or <samp>VE</samp>, as in <samp>THEY'RE</samp> or <samp>WE'VE</samp>.</li>
 <li><strong>Look for similar words.</strong>  If you see <samp>WXR</samp> and <samp>WXRU</samp>, the former might be <samp>THE</samp>, and the latter <samp>THEM</samp>, <samp>THEN</samp>, or <samp>THEY</samp>.  If two words end with the same few letters, maybe they rhyme?</li>
-<li><strong>A letter can't stand for itself.</strong> If you see the word <samp>OF</samp> in the cipher, one thing you know for certain is that that word <i>isn't</i> "of".</li>
+<li><strong>A letter can't stand for itself.</strong> If you see the word <samp>OF</samp> in the puzzle, one thing you know for certain is that that word <i>isn't</i> "of".</li>
 </ol>
 </body></html>
