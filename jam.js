@@ -15,12 +15,19 @@ function ready(fn) {
 // shortcut functions
 function q(s) { return document.querySelector(s); }
 function qa(s) { return document.querySelectorAll(s); }
+function f(l) { q(l).focus(); }
 
-function f(l) {
-  q(l).focus();
-  // IE requires a delay before focus
-  //setTimeout(function() { q(l).focus(); }, 9);
+
+// Used to count letters in words for the benefit of the ARIA labels; thanks to http://stackoverflow.com/a/4379864 for the code
+function countPrevSibs(el) {
+  var sibs = [];
+  while (el = el.previousSibling) {
+    if (el.nodeType === 3) continue; // text node
+    sibs.push(el);
+  }
+  return sibs.length;
 }
+
 
 ready(function(){
   letters = qa('input[name="s[]"]');
@@ -33,7 +40,14 @@ ready(function(){
 
     
     // Add an ARIA label to each letter field
-    letters[i].setAttribute( 'aria-label', 'Cipher letter ' + letters[i].getAttribute('placeholder') );
+    letters[i].setAttribute(
+      'aria-label',
+      'Letter ' + ( countPrevSibs(letters[i]) + 1 ) + 
+        ' of word ' + ( countPrevSibs(letters[i].parentNode) + 1 ) +
+        // this next line relies on the assumption that there are exactly two DIVs in the form: a quote and its attribution
+        ( countPrevSibs(letters[i].parentNode.parentNode) ? ' in the attribution' : '' ) +
+        '; cipher is ' + letters[i].getAttribute('placeholder')
+    );
     
     
     // Enable keyboard navigation among the letter fields

@@ -64,7 +64,7 @@ $cipher = array_combine($code1, $code2);
 #echo "</pre>";
 
 // Print the quote
-$pzlcode = '<span>';
+$pzlcode = '<div><span>';
 foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
   if ( preg_match('/[A-Za-z]/', $c) ) {
     $pzlcode .= "<input name=s[] placeholder=$cipher[$c]>";
@@ -74,7 +74,7 @@ foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
     $pzlcode .= $c;
   }
 }
-$pzlcode .= '</span>';
+$pzlcode .= '</span></div>';
 
 // Print the attribution
 if ( !empty($puzzle['author']) ) {
