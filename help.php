@@ -16,7 +16,7 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
 <link rel="stylesheet" href="crypto.css" type="text/css"></head><body><main></main>
 <h2>Instructions</h2>
   
-<div>A crpytogram is a word puzzle in which a phrase or quotation is expressed in code.  Each letter of the alphabet is replaced with another letter.  Your job is to reveal the original text by converting the letters back.</div>
+<div>A cryptogram is a word puzzle in which a phrase or quotation is expressed in code.  Each letter of the alphabet is replaced with another letter.  Your job is to reveal the original text by converting the letters back.</div>
   
 <h3>Tips</h3>
   

@@ -12,11 +12,18 @@ function ready(fn) {
   }
 }
 
-// shortcut function
-function qs(s) { return document.querySelector(s); }
+// shortcut functions
+function q(s) { return document.querySelector(s); }
+function qa(s) { return document.querySelectorAll(s); }
+
+function f(l) {
+  q(l).focus();
+  // IE requires a delay before focus
+  //setTimeout(function() { q(l).focus(); }, 9);
+}
 
 ready(function(){
-  letters = document.querySelectorAll('input[name="s[]"]');
+  letters = qa('input[name="s[]"]');
 
   // Loop through letter fields
   for (i = 0; i < letters.length; i++)  {
@@ -58,16 +65,14 @@ ready(function(){
       }
 
       // Here's where we actually perform the navigation
-      document
-        .querySelector("input[data-idx=\""+target+"\"]")
-        .focus();
+      f("input[data-idx=\""+target+"\"]");
     });
 
     
     // When the user types in a letter field:
     letters[i].addEventListener('input', function(){
       // Auto-fill all letter fields that have the same cipher as this one
-      same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      same_letters = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
       for (j = 0; j < same_letters.length; j++)  {
         same_letters[j].value = this.value.toUpperCase();
       }
@@ -87,7 +92,7 @@ ready(function(){
                                 
     letters[i].addEventListener('focus', function(){
       // Add the background coloring to all letter fields with the same cipher letter as this one
-      same_letters = document.querySelectorAll('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      same_letters = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
       for (j = 0; j < same_letters.length; j++)  {
         same_letters[j].classList.add('same');
       }
@@ -102,9 +107,9 @@ ready(function(){
 
 
   // Enable keyboard shortcuts
-  document.querySelector("a#help").innerHTML += ' (<kbd>SHIFT+I</kbd>)';
-  document.querySelector("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
-  document.querySelector("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
+  q("a#help").innerHTML += ' (<kbd>SHIFT+I</kbd>)';
+  q("button[type=reset]").innerHTML += '<br>(<kbd>SHIFT+R</kbd>)';
+  q("button[type=submit]").innerHTML += '<br>(<kbd>SHIFT+S</kbd>)';
 
   // Wanted to use 'keypress' but had to use 'keydown' because apparently Firefox (unlike Chrome and Opera) 
   // fires the keypress event when SHIFT is held down all by itself, and then doesn't fire it again when you 
@@ -116,28 +121,30 @@ ready(function(){
     // the SHIFT key on the page.
     if (ev.shiftKey) {
       //console.log(ev.keyCode);
-      ev.preventDefault();  // so the letter doesn't get typed in the field
 
       // I: read [i]nstructions
       if (ev.keyCode === 73)  {
-        document.querySelector("a#help").click();
+        q("a#help").click();
+        ev.preventDefault();  // so the letter doesn't get typed in the field
       }
       
       // R: [r]eset the puzzle
       if (ev.keyCode === 82)  {
-        document.querySelector("button[type=reset]").click();
+        q("button[type=reset]").click();
+        ev.preventDefault();  // so the letter doesn't get typed in the field
       }
       
       // S: check the [s]olution
       if (ev.keyCode === 83)  {
-        document.querySelector("button[type=submit]").click();
+        q("button[type=submit]").click();
+        ev.preventDefault();  // so the letter doesn't get typed in the field
       }
     }
   });  // end keydown listener
 
   
   // Enable link for dismissing the overlay
-  document.querySelector("#ol-close a").addEventListener('click', function(ev){
+  q("#ol-close a").addEventListener('click', function(ev){
     ev.preventDefault();
     showOL(0);
   });
@@ -153,22 +160,20 @@ ready(function(){
   
   
   // Enable the help link
-  document.querySelector("a#help").addEventListener('click', function(ev){
+  q("a#help").addEventListener('click', function(ev){
     ev.preventDefault();
     ajax("help.php");
   });
 
   
   // Check the solution asynchronously
-  document
-    .querySelector("form")
-    .addEventListener('submit', function(ev){
+  q("form").addEventListener('submit', function(ev){
       // Since we're running JavaScript, don't submit the form in the usual way
       ev.preventDefault();
     
       // Build the URL
       url = "solve.php?p="
-        + document.querySelector("input[name=p]").value;
+        + q("input[name=p]").value;
 
       for (i = 0; i < letters.length; i++) {
         url += '&s[]=' + letters[i].value;
@@ -195,21 +200,19 @@ function ajax(url) {
       code.documentElement.innerHTML = this.responseText;
 
       // insert the body of the received code into the body of the overlay
-      document.querySelector("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
+      q("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
 
       // make the "try again" link just dismiss the overlay
-      if ( document.querySelector('a#try') !== null ) {
-        document.querySelector('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
+      if ( q('a#try') !== null ) {
+        q('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
       }
 
       // enable the "give up" link
-      if ( document.querySelector('a#quit') !== null ) {
-        document
-          .querySelector('a#quit')
-          .addEventListener('click', function(ev){
-            ev.preventDefault();
-            ajax( 'solve.php?z=1&p=' + document.querySelector('input[name=p]').getAttribute('value') );
-          })
+      if ( q('a#quit') !== null ) {
+        q('a#quit').addEventListener('click', function(ev){
+          ev.preventDefault();
+          ajax( 'solve.php?z=1&p=' + q('input[name=p]').getAttribute('value') );
+        })
       }
 
       // reveal the overlay
@@ -217,7 +220,7 @@ function ajax(url) {
 
     // Failure (reached the target server, but it returned an error)
     } else {
-      document.querySelector("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
+      q("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
       showOL(1);
     }
   };
@@ -234,10 +237,10 @@ function ajax(url) {
 // shortcut function to show or hide the overlay
 function showOL(on) {
   if (on) {
-    document.querySelector("#ol-back").classList.remove('hid');
-    document.querySelector("#ol-close a").focus();  // focus on the close link
+    q("#ol-back").classList.remove('hid');
+    f("#ol-close a");  // focus on the close link
   } else {
-    document.querySelector("#ol-back").classList.add('hid');
-    document.querySelector('input[name="s[]"]').focus();  // focus on the first letter field
+    q("#ol-back").classList.add('hid');
+    f('input[name="s[]"]');  // focus on the first letter field
   }
 }
