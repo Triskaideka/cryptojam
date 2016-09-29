@@ -18,7 +18,8 @@ function qa(s) { return document.querySelectorAll(s); }
 function f(l) { q(l).focus(); }
 
 
-// Used to count letters in words for the benefit of the ARIA labels; thanks to http://stackoverflow.com/a/4379864 for the code
+// Used to count letters in words for the benefit of the ARIA labels; 
+// code is modified from http://stackoverflow.com/a/4379864
 function countPrevSibs(el) {
   var sibs = [];
   while (el = el.previousSibling) {
@@ -251,9 +252,11 @@ function ajax(url) {
 // shortcut function to show or hide the overlay
 function showOL(on) {
   if (on) {
+    q("body").classList.add('noscroll');  // prevent scrolling the body
     q("#ol-back").classList.remove('hid');
     f("#ol-close a");  // focus on the close link
   } else {
+    q("body").classList.remove('noscroll');
     q("#ol-back").classList.add('hid');
     f('input[name="s[]"]');  // focus on the first letter field
   }

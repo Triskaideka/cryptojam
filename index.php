@@ -8,17 +8,18 @@ Parameters:
 */
 
 // gzip the output
-if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
-  ob_start(“ob_gzhandler”);
+if ( substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') ) {
+  ob_start("ob_gzhandler");
 } else {
-  ob_start(); 
+  ob_start();
 }
 ?><!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
-<title>Cryptojam</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="crypto.css" type="text/css">
+<title>Cryptojam</title>
 </head><body>
 <header><h1>CRYPTOJAM</h1></header>
 <main><form action="solve.php" method="get" autocomplete="off"><div>
