@@ -108,8 +108,10 @@ ready(function(){
       'aria-label',
       'Letter ' + ( countPrevSibs(ltrs[i]) + 1 ) + 
         ' of word ' + ( countPrevSibs(ltrs[i].parentNode) + 1 ) +
-        // this next line relies on the assumption that there are exactly two DIVs in the form: a quote and its attribution
-        ( countPrevSibs(ltrs[i].parentNode.parentNode) ? ' in the attribution' : '' ) +
+        // This next line relies on some assumptions about the structure of the HTML in the form.
+        // There should be a div that contains three things: a hidden input, then a div for the quote, then a div for its
+        // attribution.  Additional elements after that are permitted, and not relevant to this calculation.
+        ( countPrevSibs(ltrs[i].parentNode.parentNode) > 1 ? ' in the attribution' : '' ) +
         '; cipher is ' + ltrs[i].getAttribute('placeholder')
     );
     

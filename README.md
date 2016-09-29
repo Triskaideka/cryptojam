@@ -12,6 +12,10 @@ In addition to the contest site, you can see this project in action at [http://c
 
 To see the longest puzzle, use ID `thoE` (add `?p=thoE` to the end of the URL).  If you're not big on cryptograms, I'd suggest trying `PMnS` or `jcpO`.
 
+## Disclaimer
+
+Hopefully it goes without saying, but just in case: the use of any quotations in this web site does not imply that the quoted person endorses this project, nor that the author of this project, nor the administrators of the 10K Apart contest, endorse the person being quoted or the sentiment expressed by the quotation.
+
 ## Acknowledgements
 
 I am grateful to (among others) the following resources which helped me build this site:
