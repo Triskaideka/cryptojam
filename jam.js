@@ -219,7 +219,7 @@ function ajax(url) {
 
       // make the "try again" link just dismiss the overlay
       if ( q('a#try') !== null ) {
-        q('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); })
+        q('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); });
       }
 
       // enable the "give up" link
@@ -227,7 +227,7 @@ function ajax(url) {
         q('a#quit').addEventListener('click', function(ev){
           ev.preventDefault();
           ajax( 'solve.php?z=1&p=' + q('input[name=p]').getAttribute('value') );
-        })
+        });
       }
 
       // reveal the overlay

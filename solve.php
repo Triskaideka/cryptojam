@@ -16,7 +16,7 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
   ob_start(); 
 }
 ?><!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cryptojam solution</title>
-<link rel="stylesheet" href="crypto.css" type="text/css"></head><body><main>
+<link rel="stylesheet" href="c.css" type="text/css"></head><body class="direct"><main>
 <?php
 // Load the puzzle db
 $puzzles = json_decode(file_get_contents('grams.json'), true);

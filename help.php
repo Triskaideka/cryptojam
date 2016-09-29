@@ -13,7 +13,7 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
   ob_start(); 
 }
 ?><!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cryptojam help</title>
-<link rel="stylesheet" href="crypto.css" type="text/css"></head><body><main>
+<link rel="stylesheet" href="c.css" type="text/css"></head><body class="direct"><main>
 <h2>Instructions</h2>
   
 <div>A cryptogram is a word puzzle in which a phrase or quotation is expressed in code. Each letter of the alphabet is replaced by another letter. Your job is to reveal the original text by converting the letters back.</div>
@@ -26,4 +26,11 @@ if ( substr_count($_SERVER[‘HTTP_ACCEPT_ENCODING’], ‘gzip’) ) {
 <li><strong>Look for similar words.</strong> If you see <samp>WXR</samp> and <samp>WXRU</samp>, the former might be <samp>THE</samp>, and the latter <samp>THEM</samp>, <samp>THEN</samp>, or <samp>THEY</samp>. If two words end with the same few letters, maybe they rhyme?</li>
 <li><strong>A letter can't stand for itself.</strong> If you see the word <samp>OF</samp> in the puzzle, one thing you know for certain is that that word <i>isn't</i> "of".</li>
 </ol>
-</main></body></html>
+</main>
+<?php 
+  /* If JS is off then the user probably visited this page directly, so show a return link */
+  if ( !empty($_GET['p']) ) {
+?>
+<nav><a href="./?p=<?php echo htmlspecialchars($_GET['p']); ?>" id="back">Keep trying</a></nav>
+<?php } ?>
+</body></html>

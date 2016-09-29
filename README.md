@@ -6,9 +6,15 @@ The database contains over 100 puzzles of varying lengths and difficulties.  The
 
 Tip: use the left and right arrow buttons to navigate between letter fields.
 
+For the longest puzzle in the database, the HTML, CSS, and JavaScript files for the initial page total about 12.5 KB uncompressed, but less than 4 KB when gzipped.  Even after you read the instructions and check the solution, the total amount of data sent is under 7 KB.
+
+In addition to the contest site, you can see this project in action at [http://crypto.triskaideka.org](http://crypto.triskaideka.org).
+
+To see the longest puzzle, use ID `thoE` (add `?p=thoE` to the end of the URL).  If you're not big on cryptograms, I'd suggest trying `PMnS` or `jcpO`.
+
 ## Acknowledgements
 
-I am grateful to the following resources which helped me build this site:
+I am grateful to (among others) the following resources which helped me build this site:
 
 * [You Might Not Need jQuery](http://youmightnotneedjquery.com/)
 * [Mozilla Developer Network](https://developer.mozilla.org/)

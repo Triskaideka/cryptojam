@@ -111,6 +111,12 @@ a {
 }
 
 
+/*** For when a secondary page is visited directly, which should only happen if JS is turned off ***/
+.direct {
+  margin: 1em;
+}
+
+
 /*** Answer page ***/
 
 /* Shows the quote when you get it right, or when you give up */

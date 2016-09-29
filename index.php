@@ -18,7 +18,7 @@ if ( substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') ) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png" />
-<link rel="stylesheet" href="crypto.css" type="text/css">
+<link rel="stylesheet" href="c.css" type="text/css">
 <title>Cryptojam</title>
 </head><body>
 <header><h1>CRYPTOJAM</h1></header>
@@ -99,9 +99,10 @@ echo $pzlcode;
 <p><button type="reset">Reset puzzle</button>
 <button type="submit">Check solution</button></p>
 </form></main>
-<footer><ul><li><a id="help" href="help.php">Instructions</a></li><li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
+<footer><ul><li><a id="help" href="help.php?p=<?php echo $pzl_id; ?>">Instructions</a></li>
+<li><a href="?p=<?php echo $pzl_id; ?>">Permalink</a><li><a href="./">Try another puzzle</a>
 <li>Quotations from <a href="https://en.wikiquote.org/">WikiQuote</a></ul></footer>
-<div id="ol-back" class="hid"><div id="ol-fore"><div id="ol-close"><a href="">Close (<kbd>ESC</kbd>)</a></div>
+<div id="ol-back" class="hid"><div id="ol-fore"><div id="ol-close"><a href="#">Close (<kbd>ESC</kbd>)</a></div>
 <div id="ol-body">Loading....</div></div></div>
-<script type="text/javascript" src="jam.js"></script>
+<script type="text/javascript" src="j.js"></script>
 </body></html>
