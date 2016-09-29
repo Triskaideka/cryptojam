@@ -246,21 +246,18 @@ ready(function(){
   
   // Check the solution asynchronously
   q("form").addEventListener('submit', function(ev){
-      // Since we're running JavaScript, don't submit the form in the usual way
-      ev.preventDefault();
-    
-      // Build the URL
-      url = "solve.php?p="
-        + q("input[name=p]").value;
+    // Since we're running JavaScript, don't submit the form in the usual way
+    ev.preventDefault();
 
-      for (i = 0; i < ltrs.length; i++) {
-        url += '&s[]=' + ltrs[i].value;
-      }
-    
-      //console.log(url);
-    
-      // Make the AJAX request
-      ajax(url);
-    });
+    // Build the URL
+    url = "solve.php?p=" + q("input[name=p]").value;
+
+    for (i = 0; i < ltrs.length; i++) {
+      url += '&s[]=' + ltrs[i].value;
+    }
+
+    // Make the AJAX request
+    ajax(url);
+  });
   
 }); // end of ready function

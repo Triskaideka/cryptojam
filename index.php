@@ -24,14 +24,10 @@ if ( substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') ) {
 <header><h1>CRYPTOJAM</h1></header>
 <main><form action="solve.php" method="get" autocomplete="off"><div>
 <?php
-
 // Load the puzzle db
 $puzzles = json_decode(file_get_contents('grams.json'), true);
 
-#echo json_last_error_msg() , "<br>";
-#echo $_GET['p'];
-#var_dump($puzzles);
-
+  
 // Choose a puzzle
 if ( !empty($_GET['p']) && array_key_exists($_GET['p'], $puzzles) ) {
   $pzl_id = $_GET['p'];
@@ -41,8 +37,6 @@ if ( !empty($_GET['p']) && array_key_exists($_GET['p'], $puzzles) ) {
 echo "<input type=\"hidden\" name=\"p\" value=\"$pzl_id\">";
 $puzzle = $puzzles[ $pzl_id ];
 
-#var_dump($puzzle);
-#echo $puzzle['author'];
 
 // Generate the cipher, taking care to avoid a situation where a letter is its own answer
 $code1 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -51,19 +45,14 @@ $code2 = $code1;
 for ($i = 0; $i < count($code1); $i++) {
   do {
     $j = array_rand($code2);
-    #echo "$j ";
   } while ( $code1[$i] === $code2[$j] || $code1[$j] === $code2[$i] );
-  #echo "<br>";
   
   list($code2[$i], $code2[$j]) = array($code2[$j], $code2[$i]);
 }
 
 $cipher = array_combine($code1, $code2);
 
-#echo "<pre>";
-#print_r($cipher);
-#echo "</pre>";
-
+  
 // Print the quote
 $pzlcode = '<div><span>';
 foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
@@ -77,6 +66,7 @@ foreach ( preg_split('//', strtoupper($puzzle['text']) ) as $c ) {
 }
 $pzlcode .= '</span></div>';
 
+  
 // Print the attribution
 if ( !empty($puzzle['author']) ) {
   $pzlcode .= "<div class=\"att\">&mdash;<span>";
@@ -93,7 +83,6 @@ if ( !empty($puzzle['author']) ) {
 }
 
 echo $pzlcode;
-
 ?>
 </div>
 <p><button type="reset">Reset puzzle</button>
