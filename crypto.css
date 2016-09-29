@@ -164,10 +164,6 @@ a {
     padding: 0 1em;
   }
 
-  ul li:last-child {
-    margin-right: 2em;
-  }
-
   ul li:not(:first-child) {
     border-left: 1px dotted #666;  
   }

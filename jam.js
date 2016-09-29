@@ -31,44 +31,44 @@ function countPrevSibs(el) {
 
 
 ready(function(){
-  letters = qa('input[name="s[]"]');
+  ltrs = qa('input[name="s[]"]');
 
   // Loop through letter fields
-  for (i = 0; i < letters.length; i++)  {
+  for (i = 0; i < ltrs.length; i++)  {
 
     // Set a maxlength for each letter field
-    letters[i].setAttribute('maxlength', 1);
+    ltrs[i].setAttribute('maxlength', 1);
 
     
     // Add an ARIA label to each letter field
-    letters[i].setAttribute(
+    ltrs[i].setAttribute(
       'aria-label',
-      'Letter ' + ( countPrevSibs(letters[i]) + 1 ) + 
-        ' of word ' + ( countPrevSibs(letters[i].parentNode) + 1 ) +
+      'Letter ' + ( countPrevSibs(ltrs[i]) + 1 ) + 
+        ' of word ' + ( countPrevSibs(ltrs[i].parentNode) + 1 ) +
         // this next line relies on the assumption that there are exactly two DIVs in the form: a quote and its attribution
-        ( countPrevSibs(letters[i].parentNode.parentNode) ? ' in the attribution' : '' ) +
-        '; cipher is ' + letters[i].getAttribute('placeholder')
+        ( countPrevSibs(ltrs[i].parentNode.parentNode) ? ' in the attribution' : '' ) +
+        '; cipher is ' + ltrs[i].getAttribute('placeholder')
     );
     
     
     // Enable keyboard navigation among the letter fields
-    letters[i].setAttribute('data-idx', i);
+    ltrs[i].setAttribute('data-idx', i);
 
     // use keydown instead of keyup so the user can hold the key to move quickly
-    letters[i].addEventListener('keydown', function(ev){
-      self_idx = parseInt(this.getAttribute('data-idx'))
+    ltrs[i].addEventListener('keydown', function(ev){
+      self_idx = parseInt(this.getAttribute('data-idx'));
   
       // left arrow
       if (ev.keyCode == 37) {
         if ( self_idx === 0 ) {
-          target = letters.length - 1;
+          target = ltrs.length - 1;
         } else {
           target = self_idx - 1;
         }
       
       // right arrow
       } else if (ev.keyCode == 39) {
-        if ( self_idx === letters.length - 1 ) {
+        if ( self_idx === ltrs.length - 1 ) {
           target = 0;
         } else {
           target = self_idx + 1;
@@ -85,11 +85,11 @@ ready(function(){
 
     
     // When the user types in a letter field:
-    letters[i].addEventListener('input', function(){
+    ltrs[i].addEventListener('input', function(){
       // Auto-fill all letter fields that have the same cipher as this one
-      same_letters = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
-      for (j = 0; j < same_letters.length; j++)  {
-        same_letters[j].value = this.value.toUpperCase();
+      sames = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      for (j = 0; j < sames.length; j++)  {
+        sames[j].value = this.value.toUpperCase();
       }
 
       // Immediately select the contents of the field so the user can change their mind about it without pressing backspace
@@ -98,18 +98,18 @@ ready(function(){
     });
 
     
-    letters[i].addEventListener('blur', function(){
+    ltrs[i].addEventListener('blur', function(){
       // Remove the background coloring from all letter fields that previously had it
-      for (j = 0; j < letters.length; j++)  {
-        letters[j].classList.remove('same');
+      for (j = 0; j < ltrs.length; j++)  {
+        ltrs[j].classList.remove('same');
       }
     });
                                 
-    letters[i].addEventListener('focus', function(){
+    ltrs[i].addEventListener('focus', function(){
       // Add the background coloring to all letter fields with the same cipher letter as this one
-      same_letters = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
-      for (j = 0; j < same_letters.length; j++)  {
-        same_letters[j].classList.add('same');
+      sames = qa('input[placeholder="'+this.getAttribute('placeholder')+'"]');
+      for (j = 0; j < sames.length; j++)  {
+        sames[j].classList.add('same');
       }
       
       // Highlight a letter when moving to it -- this makes it easier to change letters you've already entered.
@@ -190,8 +190,8 @@ ready(function(){
       url = "solve.php?p="
         + q("input[name=p]").value;
 
-      for (i = 0; i < letters.length; i++) {
-        url += '&s[]=' + letters[i].value;
+      for (i = 0; i < ltrs.length; i++) {
+        url += '&s[]=' + ltrs[i].value;
       }
     
       //console.log(url);
@@ -249,7 +249,7 @@ function ajax(url) {
 }
 
 
-// shortcut function to show or hide the overlay
+// function to show or hide the overlay
 function showOL(on) {
   if (on) {
     q("body").classList.add('noscroll');  // prevent scrolling the body
