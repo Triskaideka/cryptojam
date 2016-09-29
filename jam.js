@@ -4,18 +4,58 @@ Author: Triskaideka
 License: MIT
 */
 
-function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
-
 // shortcut functions
 function q(s) { return document.querySelector(s); }
 function qa(s) { return document.querySelectorAll(s); }
 function f(l) { q(l).focus(); }
+
+
+// For making asynchronous requests
+function ajax(url) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+
+  request.onload = function() {
+    // Success
+    if (this.status >= 200 && this.status < 400) {
+      // make a new document with the received code
+      var code = document.implementation.createHTMLDocument("s");
+      code.documentElement.innerHTML = this.responseText;
+
+      // insert the body of the received code into the body of the overlay
+      q("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
+
+      // make the "try again" link just dismiss the overlay
+      if ( q('a#try') !== null ) {
+        q('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); });
+      }
+
+      // enable the "give up" link
+      if ( q('a#quit') !== null ) {
+        q('a#quit').addEventListener('click', function(ev){
+          ev.preventDefault();
+          ajax( 'solve.php?z=1&p=' + q('input[name=p]').getAttribute('value') );
+        });
+      }
+
+      // reveal the overlay
+      showOL(1);
+
+    // Failure (reached the target server, but it returned an error)
+    } else {
+      q("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
+      showOL(1);
+    }
+  };
+
+  // Also failure: if there was a connection error, try just going to the solution URL, for what it's worth.
+  request.onerror = function() {
+    location.href = url;
+  };
+
+  request.send();
+  
+} // end function ajax()
 
 
 // Used to count letters in words for the benefit of the ARIA labels; 
@@ -29,6 +69,29 @@ function countPrevSibs(el) {
   return sibs.length;
 }
 
+
+// function to show or hide the overlay
+function showOL(on) {
+  if (on) {
+    q("body").classList.add('noscroll');  // prevent scrolling the body
+    q("#ol-back").classList.remove('hid');
+    f("#ol-close a");  // focus on the close link
+  } else {
+    q("body").classList.remove('noscroll');
+    q("#ol-back").classList.add('hid');
+    f('input[name="s[]"]');  // focus on the first letter field
+  }
+}
+
+
+// Once the document is loaded:
+function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
 
 ready(function(){
   ltrs = qa('input[name="s[]"]');
@@ -201,63 +264,3 @@ ready(function(){
     });
   
 }); // end of ready function
-
-
-function ajax(url) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url, true);
-
-  request.onload = function() {
-    // Success
-    if (this.status >= 200 && this.status < 400) {
-      // make a new document with the received code
-      var code = document.implementation.createHTMLDocument("s");
-      code.documentElement.innerHTML = this.responseText;
-
-      // insert the body of the received code into the body of the overlay
-      q("#ol-body").innerHTML = code.documentElement.querySelector('body').innerHTML;
-
-      // make the "try again" link just dismiss the overlay
-      if ( q('a#try') !== null ) {
-        q('a#try').addEventListener('click', function(ev){ ev.preventDefault(); showOL(0); });
-      }
-
-      // enable the "give up" link
-      if ( q('a#quit') !== null ) {
-        q('a#quit').addEventListener('click', function(ev){
-          ev.preventDefault();
-          ajax( 'solve.php?z=1&p=' + q('input[name=p]').getAttribute('value') );
-        });
-      }
-
-      // reveal the overlay
-      showOL(1);
-
-    // Failure (reached the target server, but it returned an error)
-    } else {
-      q("#ol-body").innerHTML = "Sorry, but something went wrong while checking your solution.";
-      showOL(1);
-    }
-  };
-
-  // Also failure: if there was a connection error, try just going to the solution URL, for what it's worth.
-  request.onerror = function() {
-    location.href = url;
-  };
-
-  request.send();
-}
-
-
-// function to show or hide the overlay
-function showOL(on) {
-  if (on) {
-    q("body").classList.add('noscroll');  // prevent scrolling the body
-    q("#ol-back").classList.remove('hid');
-    f("#ol-close a");  // focus on the close link
-  } else {
-    q("body").classList.remove('noscroll');
-    q("#ol-back").classList.add('hid');
-    f('input[name="s[]"]');  // focus on the first letter field
-  }
-}
