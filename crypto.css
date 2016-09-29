@@ -74,6 +74,7 @@ ol li {
 
 a {
   padding: 3px; /* This is just to make the outlines on focused links look nicer */
+  color: blue;
 }
 
 
