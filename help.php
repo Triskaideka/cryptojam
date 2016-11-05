@@ -3,7 +3,8 @@ help.php for Cryptojam
 Author: Triskaideka
 License: MIT
 
-Parameters: none
+Parameters:
+  p = Puzzle ID
 */
 
 // gzip the output

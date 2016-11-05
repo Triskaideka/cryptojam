@@ -1,8 +1,8 @@
 # Cryptojam
 
-Cryptojam is a small web site where you can solve cryptograms, created for the [10K Apart](https://a-k-apart.com/) contest in 2016.  The challenge was to build a web site for which an initial usable page could be delivered in 10 kilobytes or less.
+Cryptojam is a small web site where you can solve cryptograms, created for the [10K Apart](https://a-k-apart.com/) contest in 2016.  The challenge was to build a web site for which an initial usable page could be delivered in 10 kilobytes or less.  This entry earned an honorable mention!
 
-The database contains over 100 puzzles of varying lengths and difficulties.  The site should be usable without JavaScript, but is much better with it.
+The database contains over 100 puzzles of varying lengths and difficulties.  The site is usable without JavaScript, but works much better with it.
 
 Tip: use the left and right arrow buttons to navigate between letter fields.
 
